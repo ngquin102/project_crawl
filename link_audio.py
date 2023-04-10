@@ -10,9 +10,13 @@ time.sleep(5)
 # Lấy mã HTML của trang hiện tại
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
-audios = soup.find_all("audio")
-for audio in audios:
-    audio_src = audio['src']
-    print(audio_src)
+#tìm nút play để kích vào
+plays=soup.find_all("button", fdprocessedid="yji6")
+#chạy từng nút play
+for play in plays:
+    play.click() #kích vào nút play
+    Audio=soup.find("audio") #sau khi ấn nút play sẽ hiện ra thanh audio
+    file_mp3=Audio['src'] #lấy đường dẫn của file audio
+    print(file_mp3)
 # Đóng trình duyệt
 driver.quit()
